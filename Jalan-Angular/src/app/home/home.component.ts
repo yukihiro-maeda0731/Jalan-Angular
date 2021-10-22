@@ -24,7 +24,8 @@ export class HomeComponent implements OnInit {
    */
    getTranslatedSentence()  {
     this.service.getTranslatedSentence(this.inputJP).subscribe(data => {
-      this.translatedSentence = data.TranslatedText;
+      console.log("data.TranslatedText" + data.TranslatedText)
+      this.translatedSentence = data.english.TranslatedText;
     });
   }
 
