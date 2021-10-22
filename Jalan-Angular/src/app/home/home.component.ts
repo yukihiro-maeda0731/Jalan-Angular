@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { async } from 'rxjs';
+import { TranslationService } from '../translation.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  public inputJP: String = '';
+
+  translatedSentence: String = '';
+
+  constructor(private service: TranslationService) { }
 
   ngOnInit(): void {
+  }
+
+
+  /**
+   * 翻訳文取得。
+   */
+   getTranslatedSentence()  {
+    this.service.getTranslatedSentence(this.inputJP).subscribe(data => {
+      this.translatedSentence = data.TranslatedText;
+    });
   }
 
 }

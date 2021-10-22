@@ -1,1 +1,18 @@
-<p>home works!</p>
+<div style="height: 20px"></div>
+<form>
+    <div class="mx-auto" style="width: 200px">
+        <label class="input_form">
+          <input
+            type="text"
+            name="input_japanese"
+            [(ngModel)]="inputJP"
+            required
+            placeholder="日本語を入力して下さい"/>
+        </label>
+      </div>
+</form>
+
+<div class="row justify-content-center">
+    <button (click)="getTranslatedSentence()" class="btn btn-primary" style="width: 100px" >翻訳</button>
+</div>
+{{this.translatedSentence}}
