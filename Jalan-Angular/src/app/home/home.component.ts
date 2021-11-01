@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { async } from 'rxjs';
-import { TranslationService } from '../translation.service';
+import { FacilitySearchService } from '../facility-search.service';
+import { Facility } from '../model/facility';
 
 @Component({
   selector: 'app-home',
@@ -11,9 +11,9 @@ export class HomeComponent implements OnInit {
 
   public inputJP: String = '';
 
-  translatedSentence: String = '';
+  facilities: Facility[] = [];
 
-  constructor(private service: TranslationService) { }
+  constructor(private service: FacilitySearchService) { }
 
   ngOnInit(): void {
   }
@@ -22,10 +22,10 @@ export class HomeComponent implements OnInit {
   /**
    * 翻訳文取得。
    */
-   getTranslatedSentence()  {
-    this.service.getTranslatedSentence(this.inputJP).subscribe(data => {
-      console.log("data.TranslatedText" + data.TranslatedText)
-      this.translatedSentence = data.english.TranslatedText;
+   getFacilities()  {
+    this.service.getFacilities(this.inputJP).subscribe(data => {
+      console.log("data:" + data)
+      this.facilities = data.facilities;
     });
   }
 
