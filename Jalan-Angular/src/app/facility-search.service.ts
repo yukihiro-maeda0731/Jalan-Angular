@@ -18,25 +18,25 @@ export class FacilitySearchService {
    * 宿泊施設取得。
    */
     getFacilities(keyword: String): Observable<any> {
-      return this.http.get(`${apigatewayURL}${keyword}`);
+      return this.http.get(`${apigatewayURL}?keyword=${keyword}`);
     }
 
 
-    exec_task(keyword: String): Observable<any> {
-      const reqbody = {
-        input: `{"keyword": ${keyword}}`,
-        name: 'MyExecution_',
-        stateMachineArn:
-          'arn:aws:states:ap-northeast-1:473405973194:stateMachine:JalanMachine'
-      };
-      return this.http.post<any>(apigatewayURL, reqbody, httpOptions);
-    }
+    // exec_task(keyword: String): Observable<any> {
+    //   const reqbody = {
+    //     input: `{"keyword": ${keyword}}`,
+    //     name: 'MyExecution_',
+    //     stateMachineArn:
+    //       'arn:aws:states:ap-northeast-1:473405973194:stateMachine:JalanMachine'
+    //   };
+    //   return this.http.post<any>(apigatewayURL, reqbody, httpOptions);
+    // }
   
-    status_task(): Observable<any> {
-      const reqbody = {
-        executionArn: this.execTaskName
-      };
-      const statusUrl = apigatewayURL + '/status';
-      return this.http.post<any>(statusUrl, reqbody, httpOptions);
-    }
+    // status_task(): Observable<any> {
+    //   const reqbody = {
+    //     executionArn: this.execTaskName
+    //   };
+    //   const statusUrl = apigatewayURL + '/status';
+    //   return this.http.post<any>(statusUrl, reqbody, httpOptions);
+    // }
 }
