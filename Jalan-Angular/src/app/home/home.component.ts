@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
 
 
   /**
-   * 翻訳文取得。
+   * 宿泊施設名取得。
    */
    getFacilities()  {
     this.service.getFacilities(this.inputJP).subscribe(data => {
