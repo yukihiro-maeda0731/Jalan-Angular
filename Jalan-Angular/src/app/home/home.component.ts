@@ -25,7 +25,8 @@ export class HomeComponent implements OnInit {
    getFacilities()  {
     this.service.getFacilities(this.inputJP).subscribe(data => {
       console.log("data:" + data)
-      this.facilities = data.facilities;
+      this.facilities = data;
+      console.log(data.fa)
     });
   }
 

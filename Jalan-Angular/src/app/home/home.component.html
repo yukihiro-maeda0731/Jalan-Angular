@@ -20,6 +20,13 @@
 
 <div style="height: 20px"></div>
 
-<div class="row justify-content-center">
-{{this.facilities}}
+<div class="container">
+  <div class="row">
+      <div class="card bg-info" style="width: 20rem;" *ngFor="let facility of facilities">
+          <div class="card-body" >
+          <h5 class="card-title"></h5>
+              <p class="">{{facility.facilityName}}</p>
+          </div>
+      </div>
+  </div>
 </div>

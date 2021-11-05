@@ -20,7 +20,7 @@ def lambda_handler(event,context):
     facilities=[]
     for item in all:
         d={}
-        d["施設名"]=item.text
+        d["facilityName"]=item.text
         facilities.append(d)
     print("facilitiesの前")
     print(facilities)
