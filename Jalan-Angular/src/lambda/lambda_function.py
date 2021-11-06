@@ -18,9 +18,13 @@ def lambda_handler(event,context):
     all=soup.find_all("h2",{"class":"p-searchResultItem__facilityName"})
 
     facilities=[]
+    facilityNoGroup=[]
+    
     for item in all:
         d={}
         d["facilityName"]=item.text
+        link = item.find('a')
+        d["facilityNo"]=link.get('href').replace("javascript:openYadoSyosai('"," ")[0:7]
         facilities.append(d)
     print("facilitiesの前")
     print(facilities)
