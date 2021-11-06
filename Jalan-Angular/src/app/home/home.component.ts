@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FacilitySearchService } from '../facility-search.service';
 import { Facility } from '../model/facility';
 
@@ -13,7 +14,7 @@ export class HomeComponent implements OnInit {
 
   facilities: Facility[] = [];
 
-  constructor(private service: FacilitySearchService) { }
+  constructor(private service: FacilitySearchService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -28,6 +29,10 @@ export class HomeComponent implements OnInit {
       this.facilities = data;
       console.log(data.fa)
     });
+  }
+
+  displayComments(facilityNo :any){
+    this.router.navigate(['/comments'], { queryParams: {facilityNo: facilityNo}});
   }
 
 }

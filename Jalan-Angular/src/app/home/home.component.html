@@ -26,6 +26,9 @@
           <div class="card-body" >
           <h5 class="card-title"></h5>
               <p class="">{{facility.facilityName}}</p>
+              <div class="text-center">
+                <button class="btn btn-success" [routerLink]="['/comments']" (click)="displayComments(facility.facilityNo)">クチコミ</button>
+            </div>
           </div>
       </div>
   </div>
