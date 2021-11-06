@@ -1,0 +1,35 @@
+import requests
+from bs4 import BeautifulSoup
+import urllib.parse
+import json
+
+
+def lambda_handler(event,context):
+    facilityNo = event['queryStringParameters']['facilityNo']
+    print(facilityNo)
+    urlFacilityNo = urllib.parse.quote(facilityNo, encoding='shift-jis')
+    print(urlFacilityNo)
+    url = f"https://www.jalan.net/yad{urlFacilityNo}/kuchikomi/?yadNo={urlFacilityNo}"
+    r = requests.get(url)
+    c = r.content
+    # ここ原因でAPIGatewayがtimeoutなる
+    # soup = BeautifulSoup(c, "html.parser", from_encoding="Shift_JIS")
+    soup = BeautifulSoup(c, "lxml", from_encoding="Shift_JIS")
+    all=soup.find_all("p",{"class":"jlnpc-kuchikomiCassette__postBody"})
+    
+    comments=[]
+
+    for item in all:
+        d={}
+        d["comment"]=item.text
+        comments.append(d)
+    print("commentsの前")
+    print(comments)
+
+    return  {
+        'statusCode': 200,
+        'headers': {
+            "Access-Control-Allow-Origin": "*"
+        },
+        'body': json.dumps(comments)
+    }

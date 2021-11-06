@@ -1,1 +1,12 @@
-<p>comments works!</p>
+<div style="height: 60px"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="card bg-info" style="width: 20rem;" *ngFor="let comment of comments">
+            <div class="card-body" >
+            <h5 class="card-title"></h5>
+                <p class="">{{comment.comment}}</p>
+            </div>
+        </div>
+    </div>
+  </div>

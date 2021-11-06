@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Comment } from '../model/comment';
+import { CommentSearchService } from '../service/comment-search.service';
 
 @Component({
   selector: 'app-comments',
@@ -8,9 +10,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CommentsComponent implements OnInit {
   facilityNo = "";
+  comments: Comment[] = [];
 
-
-  constructor(private activatedRoute: ActivatedRoute) { }
+  constructor(private service: CommentSearchService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     // 画面遷移時に遷移元から宿Noを取得
@@ -20,6 +22,16 @@ export class CommentsComponent implements OnInit {
         console.log(this.facilityNo);
       }
     )
+    this.getComments(); 
   }
 
+  getComments()  {
+  this.service.getComments(this.facilityNo).subscribe(data => {
+    console.log("data:" + data);
+    this.comments = data;
+    console.log(this.comments);
+  });
+
+
+}
 }
