@@ -9,7 +9,7 @@ def lambda_handler(event,context):
     print(keyword)
     urlKeyword = urllib.parse.quote(keyword, encoding='shift-jis')
     print(urlKeyword)
-    url = f"https://www.jalan.net/uw/uwp2011/uww2011init.do?keyword={urlKeyword}&distCd=06&rootCd=7701&screenId=FWPCTOP&ccnt=button-fw&image1="
+    url = f"https://www.jalan.net/uw/uwp2011/uww2011init.do?keyword={urlKeyword}&dispStartIndex=0"
     r = requests.get(url)
     c = r.content
     # ここ原因でAPIGatewayがtimeoutなる
