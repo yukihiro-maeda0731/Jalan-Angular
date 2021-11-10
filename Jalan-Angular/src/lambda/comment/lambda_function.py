@@ -14,7 +14,8 @@ def lambda_handler(event,context):
     c = r.content
     # ここ原因でAPIGatewayがtimeoutなる
     # soup = BeautifulSoup(c, "html.parser", from_encoding="Shift_JIS")
-    soup = BeautifulSoup(c, "lxml", from_encoding="Shift_JIS")
+    # soup = BeautifulSoup(c, "lxml", from_encoding="Shift_JIS")
+    soup = BeautifulSoup(c.decode("CP932"), "lxml")
     all=soup.find_all("p",{"class":"jlnpc-kuchikomiCassette__postBody"})
     
     comments=[]
