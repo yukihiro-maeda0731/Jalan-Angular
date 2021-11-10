@@ -48,3 +48,9 @@ Thumbs.db
 
 environment.prod.ts
 environment.ts
+/dist
+firebase-debug
+.firebaserc
+firebase.json
+hosting.ZGlzdFxKYWxhbi1Bbmd1bGFy.cache
+launch.json
