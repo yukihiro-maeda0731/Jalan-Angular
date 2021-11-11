@@ -49,7 +49,9 @@ export class HomeComponent implements OnInit {
       console.log("data:" + data)
       this.facilities = data;
       console.log(data.fa)
-    });  }
+      this.scrollToTop();
+    });
+  }
 
   /**
    * 次の30件取得
@@ -60,6 +62,16 @@ export class HomeComponent implements OnInit {
       console.log("data:" + data)
       this.facilities = data;
       console.log(data.fa)
+      this.scrollToTop();
+    });
+  }
+
+  // ページ上部へ移動
+  scrollToTop(){
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
     });
   }
   
