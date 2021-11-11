@@ -3,9 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 const apigatewayURL: string = environment.apigatewayURL;
-const httpOptions = {
-  headers: { 'Content-Type': 'application/json' }
-};
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +13,7 @@ export class FacilitySearchService {
    /**
    * 宿泊施設取得。
    */
-    getFacilities(keyword: String, currentIndex: String): Observable<any> {
+    getFacilities(keyword: String, currentIndex: number): Observable<any> {
       return this.http.get(`${apigatewayURL}?keyword=${keyword}&currentIndex=${currentIndex}`);
     }
 

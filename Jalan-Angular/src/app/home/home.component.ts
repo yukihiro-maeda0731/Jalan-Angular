@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
 
   facilities: Facility[] = [];
 
-  currentIndex: String = "0";
+  currentIndex: number = 0;
 
   constructor(private service: FacilitySearchService, private router: Router) { }
 
@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
    * 宿泊施設名取得。
    */
    getFacilities()  {
-    this.service.getFacilities(this.inputJP, this.currentIndex).subscribe(data => {
+    this.service.getFacilities(this.inputJP, 0).subscribe(data => {
       console.log("data:" + data)
       this.facilities = data;
       console.log(data.fa)
@@ -40,19 +40,27 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/comments'], { queryParams: {facilityNo: facilityNo}});
   }
 
-  
   /**
    * 前の30件取得
    */
   prevFacility(){
-    console.log('前へ');
-  }
+    this.currentIndex = this.currentIndex - 30;
+    this.service.getFacilities(this.inputJP, this.currentIndex).subscribe(data => {
+      console.log("data:" + data)
+      this.facilities = data;
+      console.log(data.fa)
+    });  }
 
   /**
    * 次の30件取得
    */
   nextFacility(){
-    console.log('次へ');
+    this.currentIndex = this.currentIndex + 30;
+    this.service.getFacilities(this.inputJP, this.currentIndex).subscribe(data => {
+      console.log("data:" + data)
+      this.facilities = data;
+      console.log(data.fa)
+    });
   }
   
 
