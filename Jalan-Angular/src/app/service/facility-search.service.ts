@@ -16,8 +16,8 @@ export class FacilitySearchService {
    /**
    * 宿泊施設取得。
    */
-    getFacilities(keyword: String): Observable<any> {
-      return this.http.get(`${apigatewayURL}?keyword=${keyword}`);
+    getFacilities(keyword: String, currentIndex: String): Observable<any> {
+      return this.http.get(`${apigatewayURL}?keyword=${keyword}&currentIndex=${currentIndex}`);
     }
 
 }

@@ -6,10 +6,9 @@ import re
 
 def lambda_handler(event,context):
     keyword = event['queryStringParameters']['keyword']
-    print(keyword)
+    currentIndex = event['queryStringParameters']['currentIndex']
     urlKeyword = urllib.parse.quote(keyword, encoding='shift-jis')
-    print(urlKeyword)
-    url = f"https://www.jalan.net/uw/uwp2011/uww2011init.do?keyword={urlKeyword}&dispStartIndex=0"
+    url = f"https://www.jalan.net/uw/uwp2011/uww2011init.do?keyword={urlKeyword}&dispStartIndex={currentIndex}"
     r = requests.get(url)
     c = r.content
     # ここ原因でAPIGatewayがtimeoutなる
