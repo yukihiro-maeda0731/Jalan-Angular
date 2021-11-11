@@ -7,13 +7,10 @@
 <div style="height: 20px"></div>
 
 
-<div class="container">
-    <div class="row">
-        <div class="card bg-info" style="width: 20rem;" *ngFor="let comment of comments">
-            <div class="card-body" >
-            <h5 class="card-title"></h5>
-                <p class="">{{comment.comment}}</p>
-            </div>
-        </div>
+<div *ngFor="let comment of comments">
+  <div class="card bg-primary">
+    <div class="card-body mx-auto">
+      {{comment.comment}}
     </div>
   </div>
+  <br>
