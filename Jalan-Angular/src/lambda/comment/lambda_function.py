@@ -7,9 +7,14 @@ import json
 def lambda_handler(event,context):
     facilityNo = event['queryStringParameters']['facilityNo']
     print(facilityNo)
+    currentIndex = event['queryStringParameters']['currentIndex']
+    print(currentIndex)
     urlFacilityNo = urllib.parse.quote(facilityNo, encoding='shift-jis')
     print(urlFacilityNo)
     url = f"https://www.jalan.net/yad{urlFacilityNo}/kuchikomi/?yadNo={urlFacilityNo}"
+    # 2ページ目以降はurlのルールが異なる
+    if not currentIndex == '1':
+        url = f"https://www.jalan.net/yad{urlFacilityNo}/kuchikomi/{currentIndex}.HTML?yadNo={urlFacilityNo}"
     r = requests.get(url)
     c = r.content
     # ここ原因でAPIGatewayがtimeoutなる

@@ -14,8 +14,8 @@ export class CommentSearchService {
   /**
    * 宿泊施設取得。
    */
-  getComments(facilityNo: string): Observable<any> {
-    return this.http.get(`${apigatewaySearchCommentsURL}?facilityNo=${facilityNo}`);
+  getComments(facilityNo: string, currentIndex: number): Observable<any> {
+    return this.http.get(`${apigatewaySearchCommentsURL}?facilityNo=${facilityNo}&currentIndex=${currentIndex}`);
   }
   
 }
