@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FacilitySearchService } from '../service/facility-search.service';
 import { Facility } from '../model/facility';
+import { Overlay } from '@angular/cdk/overlay';
+import { ComponentPortal } from '@angular/cdk/portal';
+import { MatSpinner } from '@angular/material/progress-spinner';
+
 
 @Component({
   selector: 'app-home',
@@ -16,7 +20,13 @@ export class HomeComponent implements OnInit {
 
   currentIndex: number = 0;
 
-  constructor(private service: FacilitySearchService, private router: Router) { }
+  constructor(private service: FacilitySearchService, private router: Router, private overlay: Overlay) { }
+
+  overlayRef = this.overlay.create({
+    hasBackdrop: true,
+    positionStrategy: this.overlay
+      .position().global().centerHorizontally().centerVertically()
+  });
 
   ngOnInit(): void {
   }
@@ -26,10 +36,12 @@ export class HomeComponent implements OnInit {
    * 宿泊施設名取得。
    */
    getFacilities()  {
+    this.overlayRef.attach(new ComponentPortal(MatSpinner));
     this.service.getFacilities(this.inputJP, 0).subscribe(data => {
       console.log("data:" + data)
       this.facilities = data;
       console.log(data.fa)
+      this.overlayRef.detach();
     });
   }
 
@@ -44,11 +56,13 @@ export class HomeComponent implements OnInit {
    * 前の30件取得
    */
   prevFacility(){
+    this.overlayRef.attach(new ComponentPortal(MatSpinner));
     this.currentIndex = this.currentIndex - 30;
     this.service.getFacilities(this.inputJP, this.currentIndex).subscribe(data => {
       console.log("data:" + data)
       this.facilities = data;
-      console.log(data.fa)
+      console.log(data.fa);
+      this.overlayRef.detach();
       this.scrollToTop();
     });
   }
@@ -57,11 +71,13 @@ export class HomeComponent implements OnInit {
    * 次の30件取得
    */
   nextFacility(){
+    this.overlayRef.attach(new ComponentPortal(MatSpinner));
     this.currentIndex = this.currentIndex + 30;
     this.service.getFacilities(this.inputJP, this.currentIndex).subscribe(data => {
       console.log("data:" + data)
       this.facilities = data;
-      console.log(data.fa)
+      console.log(data.fa);
+      this.overlayRef.detach();
       this.scrollToTop();
     });
   }
