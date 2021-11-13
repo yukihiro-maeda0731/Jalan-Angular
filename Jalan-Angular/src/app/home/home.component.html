@@ -27,7 +27,11 @@
 <div *ngFor="let facility of facilities">
   <div class="card bg-info">
     <div class="card-body mx-auto">
-      {{facility.facilityName}}
+      <div class="facility-name row justify-content-center">
+        {{facility.facilityName}}
+      </div>
+      <br>
+      {{facility.facilityAddress}}
       <br>
       <div class="row justify-content-center">
         <button (click)="displayComments(facility.facilityNo)" [routerLink]="['/comments']" class="delete btn btn-success" style="width: 150px">クチコミ

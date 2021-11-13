@@ -18,16 +18,20 @@ def lambda_handler(event,context):
     # utf-8に変換してからパース
     soup = BeautifulSoup(c.decode("CP932"), "lxml")
     all=soup.find_all("h2",{"class":"p-searchResultItem__facilityName"})
-
+    
+    addressGroup = soup.find_all("dd",{"class":"p-searchResultItem__facilityInfoValue"})
+    addressGroupIndex = 0
     facilities=[]
 
     for item in all:
         d={}
         d["facilityName"]=item.text
         link = item.find('a')
-        # d["facilityNo"]=link.get('href').replace("javascript:openYadoSyosai('"," ")[0:7]
         # reで文字列から数字以外を削除
         d["facilityNo"] = re.sub(r"\D", "", link.get('href'))[0:6]
+        d["facilityAddress"] = addressGroup[addressGroupIndex].text
+        # 偶数が必要な情報(住所)・奇数が不要な情報のため偶数のみ格納
+        addressGroupIndex = addressGroupIndex + 2
         facilities.append(d)
     print("facilitiesの前")
     print(facilities)
