@@ -40,8 +40,8 @@ export class CommentsComponent implements OnInit {
   this.overlayRef.attach(new ComponentPortal(MatSpinner));
   this.service.getComments(this.facilityNo, this.currentIndex).subscribe(data => {
     console.log("data:" + data);
-    this.comments = data;
     console.log(this.comments);
+    this.comments = data;
     this.overlayRef.detach();
   });
   }
@@ -80,13 +80,20 @@ export class CommentsComponent implements OnInit {
     });
   }
 
-      // ページ上部へ移動
+  // ページ上部へ移動
   scrollToTop(){
     window.scroll({
       top: 0,
       left: 0,
       behavior: 'smooth'
     });
+  }
+
+  /**
+   * 星を動的に表示する。
+   */
+  countStar(i: number){
+    return  Array(Number(i));
   }
 
 }
