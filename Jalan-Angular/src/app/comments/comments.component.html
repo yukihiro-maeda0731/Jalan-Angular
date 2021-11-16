@@ -14,7 +14,7 @@
 <div *ngFor="let comment of comments">
   <div class="card bg-info">
     <div class="card-header">
-      タイトル
+      {{comment.commentTitle}}
     </div>
     <div class="card-body mx-auto">
         <div class="btn-group" role="group" *ngFor=" let in of countStar(comment.starRating)">

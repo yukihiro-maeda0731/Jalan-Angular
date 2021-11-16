@@ -21,8 +21,12 @@ def lambda_handler(event,context):
     # soup = BeautifulSoup(c, "lxml", from_encoding="Shift_JIS")
     soup = BeautifulSoup(c.decode("CP932"), "lxml")
     all=soup.find_all("p",{"class":"jlnpc-kuchikomiCassette__postBody"})
+    
     starRatingGroup = soup.find_all("div",{"class":"jlnpc-kuchikomiCassette__totalRate"})
     starRatingGroupIndex = 0
+    
+    commentTitleGroup = soup.find_all("p",{"class":"jlnpc-kuchikomiCassette__lead"})
+    commentTitleGroupIndex = 0
 
     comments=[]
 
@@ -30,7 +34,9 @@ def lambda_handler(event,context):
         d={}
         d["comment"]=item.text
         d["starRating"]=starRatingGroup[starRatingGroupIndex].text
+        d["commentTitle"]=commentTitleGroup[commentTitleGroupIndex].text
         starRatingGroupIndex = starRatingGroupIndex + 1
+        commentTitleGroupIndex = commentTitleGroupIndex + 1
         comments.append(d)
 
     return  {
