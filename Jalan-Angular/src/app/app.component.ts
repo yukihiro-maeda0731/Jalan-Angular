@@ -12,5 +12,14 @@ export class AppComponent {
   ngOnInit(): void {
     this.router.navigate(['']);
   }
+
+  // ページ上部へ移動
+  scrollToTop(){
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+  }
   
 }
