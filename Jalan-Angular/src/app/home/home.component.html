@@ -24,6 +24,12 @@
 
 <div style="height: 20px"></div>
 
+<div *ngIf=this.noFacilityMessageFlg>
+  <div class="row justify-content-center">
+    該当する宿泊施設がありません。
+  </div>
+</div>
+
 <div *ngFor="let facility of facilities">
   <div class="card bg-info">
     <div class="card-body mx-auto">

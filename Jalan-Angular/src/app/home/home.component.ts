@@ -20,6 +20,8 @@ export class HomeComponent implements OnInit {
 
   currentIndex: number = 0;
 
+  noFacilityMessageFlg: boolean = false;
+
   constructor(private service: FacilitySearchService, private router: Router, private overlay: Overlay) { }
 
   overlayRef = this.overlay.create({
@@ -31,7 +33,6 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
   /**
    * 宿泊施設名取得。
    */
@@ -39,6 +40,11 @@ export class HomeComponent implements OnInit {
     this.overlayRef.attach(new ComponentPortal(MatSpinner));
     this.service.getFacilities(this.inputJP, 0).subscribe(data => {
       console.log("data:" + data)
+      if(data.length === 0){
+        this.noFacilityMessageFlg = true;
+      } else {
+        this.noFacilityMessageFlg = false;
+      }
       this.facilities = data;
       console.log(data.fa)
       this.overlayRef.detach();

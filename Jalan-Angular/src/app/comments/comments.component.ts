@@ -16,6 +16,7 @@ export class CommentsComponent implements OnInit {
   facilityNo = "";
   comments: Comment[] = [];
   currentIndex: number = 1;
+  noCommentMessageFlg: boolean = false;
 
   constructor(private service: CommentSearchService, private activatedRoute: ActivatedRoute, private router: Router, private overlay: Overlay) { }
 
@@ -41,6 +42,11 @@ export class CommentsComponent implements OnInit {
   this.service.getComments(this.facilityNo, this.currentIndex).subscribe(data => {
     console.log("data:" + data);
     console.log(this.comments);
+    if(data.length === 0){
+      this.noCommentMessageFlg = true;
+    } else {
+      this.noCommentMessageFlg = false;
+    }
     this.comments = data;
     this.overlayRef.detach();
   });
