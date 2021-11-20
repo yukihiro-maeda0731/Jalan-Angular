@@ -38,7 +38,7 @@
 <br>
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
-    <li class="page-item"><a class="page-link" (click)="prevComment()">前へ</a></li>
+    <li *ngIf="this.currentIndex != 0" class="page-item"><a class="page-link" (click)="prevComment()">前へ</a></li>
     <li class="page-item"><a class="page-link" (click)="nextComment()">次へ</a></li>
   </ul>
 </nav>

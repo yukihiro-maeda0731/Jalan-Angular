@@ -34,7 +34,8 @@ export class CommentsComponent implements OnInit {
         console.log(this.facilityNo);
       }
     )
-    this.getComments(); 
+    this.getComments();
+    this.clearCurrentIndex()
   }
 
   getComments()  {
@@ -100,6 +101,11 @@ export class CommentsComponent implements OnInit {
    */
   countStar(i: number){
     return  Array(Number(i));
+  }
+
+  // 前へボタンを制御するための関数
+  clearCurrentIndex() {
+    this.currentIndex = 0;
   }
 
 }
