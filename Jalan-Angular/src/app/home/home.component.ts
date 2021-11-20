@@ -22,6 +22,8 @@ export class HomeComponent implements OnInit {
 
   noFacilityMessageFlg: boolean = false;
 
+  nextPageFlg: boolean = false;
+
   constructor(private service: FacilitySearchService, private router: Router, private overlay: Overlay) { }
 
   overlayRef = this.overlay.create({
@@ -31,6 +33,7 @@ export class HomeComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    this.clearCurrentIndex();
   }
 
   /**
@@ -48,6 +51,8 @@ export class HomeComponent implements OnInit {
       this.facilities = data;
       console.log(data.fa)
       this.overlayRef.detach();
+      this.clearCurrentIndex();
+      this.nextPageFlg = true;
     });
   }
 
@@ -97,5 +102,9 @@ export class HomeComponent implements OnInit {
     });
   }
   
+  // 前へボタンを制御するための関数
+  clearCurrentIndex() {
+    this.currentIndex = 0;
+  }
 
 }
