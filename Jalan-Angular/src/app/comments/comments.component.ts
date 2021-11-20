@@ -97,13 +97,20 @@ export class CommentsComponent implements OnInit {
   }
 
   /**
-   * 星を動的に表示する。
+   * 星を動的に表示
    */
-  countStar(i: number){
+  countStarFill(i: number){
     return  Array(Number(i));
   }
 
-  // 前へボタンを制御するための関数
+  /**
+   * 空の星を動的に表示
+   */
+  countStarBlank(i: number){
+    return  Array(Number(5-i));
+  }
+
+  // 前へボタンを制御
   clearCurrentIndex() {
     this.currentIndex = 0;
   }
