@@ -64,6 +64,13 @@ export class HomeComponent implements OnInit {
   }
 
   /**
+   * 施設詳細へ遷移。
+   */
+  displayFacilityDetails(facilityNo :any){
+    this.router.navigate(['/facility-details'], { queryParams: {facilityNo: facilityNo}});
+  }
+
+  /**
    * 前の30件取得
    */
   prevFacility(){

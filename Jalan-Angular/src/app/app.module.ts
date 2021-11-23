@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { FacilityDetailsComponent } from './facility-details/facility-details.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FooterComponent } from './footer/footer.component';
     HomeComponent,
     CommentsComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    FacilityDetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -33,7 +33,7 @@
 <div *ngFor="let facility of facilities">
   <div class="card bg-info">
     <div class="card-body mx-auto">
-      <div class="facility-name row justify-content-center">
+      <div (click)="displayFacilityDetails(facility.facilityNo)" [routerLink]="['/facility-details']" class="facility-name row justify-content-center">
         {{facility.facilityName}}
       </div>
       <br>
